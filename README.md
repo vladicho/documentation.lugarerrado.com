@@ -4,10 +4,31 @@
 Documentação — Documentação técnica e guias do lugarerrado.
 
 ## Stack
-Astro + Starlight / Nextra (SSG + MDX)
+HTML, Cloudflare Workers com Static Assets e Cloudflare D1.
 
 ## Arquitetura
-Microsserviço do ecossistema lugarerrado. Escalado via Docker, orquestrado com NGINX + Cloudflare.
+O Worker publica a página em `documentation.lugarerrado.com` e oferece a API
+`/api/search-history`. A API grava e consulta o histórico de pesquisas no D1.
+
+## Desenvolvimento
+
+```bash
+pnpm install
+pnpm run dev
+```
+
+## Banco de dados
+
+```bash
+pnpm run db:migrate:local
+```
+
+## Publicação
+
+```bash
+pnpm run db:migrate:remote
+pnpm run deploy
+```
 
 ---
 

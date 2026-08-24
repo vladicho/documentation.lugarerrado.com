@@ -90,6 +90,12 @@
             return d.toLocaleDateString('pt-BR') + ' ' + d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
         }
 
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, function(char) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char];
+            });
+        }
+
         function load() {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/api/search-history', true);
@@ -107,10 +113,10 @@
                     var items = data[projeto] || [];
                     if (!items.length) return;
                     html += '<div class="project-card">';
-                    html += '<h2>' + projeto + ' <span>' + items.length + ' pesquisas</span></h2>';
+                    html += '<h2>' + escapeHtml(projeto) + ' <span>' + items.length + ' pesquisas</span></h2>';
                     html += '<table><tr><th>Termo</th><th>Data</th></tr>';
                     items.forEach(function(item) {
-                        html += '<tr><td>' + item.q + '</td><td>' + formatTime(item.t) + '</td></tr>';
+                        html += '<tr><td>' + escapeHtml(item.q) + '</td><td>' + formatTime(item.t) + '</td></tr>';
                     });
                     html += '</table></div>';
                 });

@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "documentation-lugarerrado",
+  "main": "./worker/index.ts",
+  "workers_dev": false,
+  "preview_urls": false,
+  "compatibility_date": "2026-08-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    {
+      "pattern": "documentation.lugarerrado.com/*",
+      "zone_name": "lugarerrado.com"
+    }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "auto-trailing-slash"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "documentation-search-history",
+      "database_id": "649b7d91-52b1-4296-8ce6-b77bf8a9a80c",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}
