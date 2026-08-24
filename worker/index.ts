@@ -7,6 +7,19 @@ type SearchRow = {
   created_at: string;
 };
 
+type ReportRow = {
+  total?: number;
+  today?: number;
+  last_hour?: number;
+  unique_terms?: number;
+  query?: string;
+  project?: string;
+  count?: number;
+  last_seen?: string;
+  created_at?: string;
+  bucket?: string;
+};
+
 function allowedOrigin(request: Request): string | null {
   const origin = request.headers.get("Origin");
   return origin === EMBEDDED_ORIGIN || origin === DOCUMENTATION_ORIGIN ? origin : null;
@@ -87,12 +100,89 @@ async function searchHistory(request: Request, env: Env): Promise<Response> {
   return json(request, { ok: false, error: "Método não permitido." }, 405);
 }
 
+async function searchReport(request: Request, env: Env): Promise<Response> {
+  if (request.method !== "GET") {
+    return json(request, { ok: false, error: "Método não permitido." }, 405);
+  }
+
+  const [summaryResult, queriesResult, projectsResult, recentResult, timelineResult] =
+    await env.DB.batch<ReportRow>([
+      env.DB.prepare(`
+        SELECT
+          COUNT(*) AS total,
+          COALESCE(SUM(CASE WHEN date(created_at) = date('now') THEN 1 ELSE 0 END), 0) AS today,
+          COALESCE(SUM(CASE WHEN julianday(created_at) >= julianday('now', '-1 hour') THEN 1 ELSE 0 END), 0) AS last_hour,
+          COUNT(DISTINCT lower(trim(query))) AS unique_terms
+        FROM search_history
+      `),
+      env.DB.prepare(`
+        SELECT MIN(query) AS query, COUNT(*) AS count, MAX(created_at) AS last_seen
+        FROM search_history
+        GROUP BY lower(trim(query))
+        ORDER BY count DESC, last_seen DESC
+        LIMIT 10
+      `),
+      env.DB.prepare(`
+        SELECT project, COUNT(*) AS count, MAX(created_at) AS last_seen
+        FROM search_history
+        GROUP BY project
+        ORDER BY count DESC, project ASC
+      `),
+      env.DB.prepare(`
+        SELECT project, query, created_at
+        FROM search_history
+        ORDER BY created_at DESC
+        LIMIT 50
+      `),
+      env.DB.prepare(`
+        SELECT strftime('%Y-%m-%dT%H:00:00Z', created_at) AS bucket, COUNT(*) AS count
+        FROM search_history
+        WHERE julianday(created_at) >= julianday('now', '-24 hours')
+        GROUP BY bucket
+        ORDER BY bucket ASC
+      `),
+    ]);
+
+  const summary = summaryResult.results[0] ?? {};
+  return json(request, {
+    generatedAt: new Date().toISOString(),
+    summary: {
+      total: summary.total ?? 0,
+      today: summary.today ?? 0,
+      lastHour: summary.last_hour ?? 0,
+      uniqueTerms: summary.unique_terms ?? 0,
+    },
+    topQueries: queriesResult.results.map((row) => ({
+      query: row.query ?? "",
+      count: row.count ?? 0,
+      lastSeen: row.last_seen ?? "",
+    })),
+    projects: projectsResult.results.map((row) => ({
+      project: row.project ?? "",
+      count: row.count ?? 0,
+      lastSeen: row.last_seen ?? "",
+    })),
+    recent: recentResult.results.map((row) => ({
+      project: row.project ?? "",
+      query: row.query ?? "",
+      createdAt: row.created_at ?? "",
+    })),
+    timeline: timelineResult.results.map((row) => ({
+      bucket: row.bucket ?? "",
+      count: row.count ?? 0,
+    })),
+  });
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     try {
       if (url.pathname === "/api/search-history") {
         return secure(await searchHistory(request, env));
+      }
+      if (url.pathname === "/api/search-report") {
+        return secure(await searchReport(request, env));
       }
       return secure(await env.ASSETS.fetch(request));
     } catch (error) {

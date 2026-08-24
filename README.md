@@ -7,8 +7,10 @@ Documentação — Documentação técnica e guias do lugarerrado.
 HTML, Cloudflare Workers com Static Assets e Cloudflare D1.
 
 ## Arquitetura
-O Worker publica a página em `documentation.lugarerrado.com` e oferece a API
-`/api/search-history`. A API grava e consulta o histórico de pesquisas no D1.
+O Worker publica em `documentation.lugarerrado.com` um painel de pesquisas que
+se atualiza a cada cinco segundos. A API `/api/search-history` grava e consulta
+o histórico no D1; `/api/search-report` fornece totais, termos mais buscados,
+projetos, atividade das últimas 24 horas e registros recentes.
 
 ## Desenvolvimento
 

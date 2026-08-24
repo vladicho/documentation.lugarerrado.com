@@ -1,130 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>documentation.lugarerrado.com</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            padding: 2rem;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        h1 {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        .project-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,.08);
-        }
-        .project-card h2 {
-            font-size: 1.1rem;
-            color: #764ba2;
-            margin-bottom: .75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .project-card h2 span {
-            font-size: .8rem;
-            color: #999;
-            font-weight: 400;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            text-align: left;
-            padding: 8px 12px;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: .9rem;
-        }
-        th {
-            color: #999;
-            font-weight: 600;
-            font-size: .75rem;
-            text-transform: uppercase;
-        }
-        td:last-child, th:last-child { text-align: right; color: #bbb; font-size: .8rem; }
-        .empty {
-            text-align: center;
-            color: #bbb;
-            padding: 2rem;
-            font-style: italic;
-        }
-        .footer {
-            text-align: center;
-            color: #999;
-            font-size: .8rem;
-            margin-top: 2rem;
-        }
-        .footer a { color: #764ba2; text-decoration: none; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Pesquisas — Lugar Errado</title>
+  <style>
+    :root{--ink:#282431;--muted:#76717d;--purple:#7046a5;--purple-soft:#f1ebf8;--green:#22966f;--line:#e9e5ed;--paper:#fff;--bg:#f5f3f7}*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}.topbar{background:linear-gradient(135deg,#5f73df,#7a4da9);color:#fff;padding:2.2rem 1.25rem 4.8rem}.topbar-inner,.dashboard{max-width:1120px;margin:0 auto}.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;opacity:.75;margin-bottom:.55rem}.title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.title-row h1{font-size:1.75rem;line-height:1.2}.subtitle{opacity:.78;font-size:.9rem;margin-top:.45rem}.live{display:flex;align-items:center;gap:.48rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:.45rem .75rem;font-size:.77rem;white-space:nowrap}.dot{width:8px;height:8px;border-radius:50%;background:#54e1a9;box-shadow:0 0 0 4px rgba(84,225,169,.16);animation:pulse 1.8s infinite}@keyframes pulse{50%{opacity:.45}}.dashboard{margin-top:-3rem;padding:0 1.25rem 2.5rem}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}.metric,.panel{background:var(--paper);border:1px solid rgba(50,34,66,.06);box-shadow:0 7px 24px rgba(50,34,66,.07);border-radius:16px}.metric{padding:1.2rem}.metric-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.metric-value{font-size:1.75rem;font-weight:750;margin-top:.3rem}.metric-note{font-size:.72rem;color:#a09aa7;margin-top:.15rem}.grid{display:grid;grid-template-columns:1.12fr .88fr;gap:.9rem;margin-top:.9rem}.panel{padding:1.2rem;min-width:0}.panel-wide{grid-column:1/-1}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}.panel h2{font-size:.98rem}.panel-note,.updated{font-size:.72rem;color:#98919e}.chart{height:170px;display:flex;align-items:flex-end;gap:5px;padding-top:1rem;border-bottom:1px solid var(--line)}.bar-wrap{height:100%;flex:1;min-width:5px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px}.bar{width:100%;min-height:3px;background:linear-gradient(180deg,#8060b3,#6175dc);border-radius:5px 5px 1px 1px;position:relative}.bar:hover:after{content:attr(data-label);position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:#2f2935;color:#fff;font-size:.68rem;padding:4px 6px;border-radius:5px;white-space:nowrap;z-index:2}.bar-time{font-size:.58rem;color:#aaa;white-space:nowrap}.ranking{list-style:none}.ranking li{display:grid;grid-template-columns:25px 1fr auto;align-items:center;gap:.6rem;padding:.62rem 0;border-bottom:1px solid #f0edf2}.ranking li:last-child{border:0}.rank{color:#aaa;font-size:.75rem}.term{font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.count{font-size:.72rem;font-weight:700;color:var(--purple);background:var(--purple-soft);padding:3px 8px;border-radius:999px}.projects{display:flex;flex-direction:column;gap:.65rem}.project-line{display:grid;grid-template-columns:minmax(90px,1fr) 2.2fr 34px;align-items:center;gap:.6rem;font-size:.78rem}.project-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track{height:7px;background:#eeeaf2;border-radius:9px;overflow:hidden}.fill{height:100%;background:#7450a6;border-radius:9px}.project-count{text-align:right;color:#777}.table-wrap{overflow:auto;max-height:430px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.7rem .65rem;border-bottom:1px solid #f0edf2;font-size:.8rem}th{position:sticky;top:0;background:#fff;color:#928b97;text-transform:uppercase;letter-spacing:.04em;font-size:.65rem;z-index:1}td:first-child{font-weight:600}.tag{display:inline-block;background:#f1edf7;color:#694294;border-radius:999px;padding:3px 8px;font-size:.68rem}.empty{color:#aaa;font-size:.82rem;padding:2rem 0;text-align:center}.footer{text-align:center;color:#999;font-size:.75rem;margin-top:1.3rem}.footer a{color:var(--purple);text-decoration:none}.error{background:#fff0f0;color:#a33b3b;border-radius:10px;padding:.75rem;font-size:.8rem;margin-top:.9rem;display:none}@media(max-width:760px){.topbar{padding-top:1.5rem}.title-row{display:block}.live{display:inline-flex;margin-top:1rem}.metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.panel-wide{grid-column:auto}.bar-time{display:none}}@media(max-width:420px){.dashboard{padding-left:.65rem;padding-right:.65rem}.metric{padding:1rem}.metric-value{font-size:1.45rem}}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>documentation.lugarerrado.com</h1>
-        <div id="content">
-            <div class="empty">Carregando historico de pesquisas...</div>
-        </div>
-        <div class="footer">
-            <a href="https://lugarerrado.com">lugarerrado.com</a>
-        </div>
-    </div>
-
-    <script>
-        function formatTime(ts) {
-            var d = new Date(ts);
-            return d.toLocaleDateString('pt-BR') + ' ' + d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
-        }
-
-        function escapeHtml(value) {
-            return String(value).replace(/[&<>"']/g, function(char) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char];
-            });
-        }
-
-        function load() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/api/search-history', true);
-            xhr.onload = function() {
-                if (xhr.status !== 200) return;
-                var data = JSON.parse(xhr.responseText);
-                var container = document.getElementById('content');
-                var keys = Object.keys(data);
-                if (!keys.length) {
-                    container.innerHTML = '<div class="empty">Nenhuma pesquisa registrada</div>';
-                    return;
-                }
-                var html = '';
-                keys.forEach(function(projeto) {
-                    var items = data[projeto] || [];
-                    if (!items.length) return;
-                    html += '<div class="project-card">';
-                    html += '<h2>' + escapeHtml(projeto) + ' <span>' + items.length + ' pesquisas</span></h2>';
-                    html += '<table><tr><th>Termo</th><th>Data</th></tr>';
-                    items.forEach(function(item) {
-                        html += '<tr><td>' + escapeHtml(item.q) + '</td><td>' + formatTime(item.t) + '</td></tr>';
-                    });
-                    html += '</table></div>';
-                });
-                container.innerHTML = html;
-            };
-            xhr.send();
-        }
-        load();
-    </script>
+  <header class="topbar"><div class="topbar-inner"><div class="eyebrow">documentation.lugarerrado.com</div><div class="title-row"><div><h1>Relatório de pesquisas</h1><p class="subtitle">Acompanhamento do que está sendo pesquisado no ecossistema Lugar Errado.</p></div><div class="live"><span class="dot"></span><span id="liveText">Ao vivo · atualiza em 5s</span></div></div></div></header>
+  <main class="dashboard">
+    <section class="metrics" aria-label="Resumo das pesquisas">
+      <article class="metric"><div class="metric-label">Total</div><div class="metric-value" id="total">—</div><div class="metric-note">pesquisas registradas</div></article>
+      <article class="metric"><div class="metric-label">Hoje</div><div class="metric-value" id="today">—</div><div class="metric-note">desde meia-noite UTC</div></article>
+      <article class="metric"><div class="metric-label">Última hora</div><div class="metric-value" id="lastHour">—</div><div class="metric-note">atividade recente</div></article>
+      <article class="metric"><div class="metric-label">Termos únicos</div><div class="metric-value" id="uniqueTerms">—</div><div class="metric-note">consultas diferentes</div></article>
+    </section>
+    <div class="error" id="error" role="alert"></div>
+    <section class="grid">
+      <article class="panel"><div class="panel-head"><h2>Atividade nas últimas 24 horas</h2><span class="panel-note">pesquisas por hora</span></div><div class="chart" id="timeline"><div class="empty">Carregando atividade…</div></div></article>
+      <article class="panel"><div class="panel-head"><h2>Termos mais buscados</h2><span class="panel-note">top 10</span></div><ol class="ranking" id="topQueries"><li class="empty">Carregando termos…</li></ol></article>
+      <article class="panel"><div class="panel-head"><h2>Pesquisas por projeto</h2><span class="panel-note">distribuição total</span></div><div class="projects" id="projects"><div class="empty">Carregando projetos…</div></div></article>
+      <article class="panel"><div class="panel-head"><h2>Última atualização</h2></div><div style="font-size:2rem;font-weight:750" id="clock">—</div><p class="updated" id="updated">Conectando ao relatório…</p></article>
+      <article class="panel panel-wide"><div class="panel-head"><h2>Pesquisas recentes</h2><span class="panel-note">50 registros mais novos</span></div><div class="table-wrap"><table><thead><tr><th>Termo</th><th>Projeto</th><th>Quando</th></tr></thead><tbody id="recent"><tr><td colspan="3" class="empty">Carregando pesquisas…</td></tr></tbody></table></div></article>
+    </section>
+    <footer class="footer"><a href="https://embeddedsearchengine.lugarerrado.com">Abrir buscador</a> · <a href="https://lugarerrado.com">lugarerrado.com</a></footer>
+  </main>
+  <script>
+    var loading=false;
+    function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]})}
+    function number(value){return new Intl.NumberFormat("pt-BR").format(Number(value)||0)}
+    function dateTime(value){var date=new Date(value);return isNaN(date.getTime())?"—":date.toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"})}
+    function relative(value){var ms=Date.now()-new Date(value).getTime();if(!isFinite(ms))return"—";var min=Math.max(0,Math.floor(ms/60000));if(min<1)return"agora";if(min<60)return"há "+min+" min";var hours=Math.floor(min/60);if(hours<24)return"há "+hours+" h";return dateTime(value)}
+    function renderTimeline(items){var el=document.getElementById("timeline");if(!items.length){el.innerHTML='<div class="empty">Sem pesquisas nas últimas 24 horas</div>';return}var max=Math.max.apply(null,items.map(function(x){return x.count}));el.innerHTML=items.map(function(item){var d=new Date(item.bucket),hour=isNaN(d.getTime())?"":String(d.getHours()).padStart(2,"0")+"h",height=Math.max(3,Math.round((item.count/max)*100));return'<div class="bar-wrap"><div class="bar" style="height:'+height+'%" data-label="'+number(item.count)+' pesquisas"></div><span class="bar-time">'+hour+'</span></div>'}).join("")}
+    function renderTop(items){var el=document.getElementById("topQueries");if(!items.length){el.innerHTML='<li class="empty">Nenhum termo registrado</li>';return}el.innerHTML=items.map(function(item,i){return'<li><span class="rank">'+(i+1)+'</span><span class="term" title="'+escapeHtml(item.query)+'">'+escapeHtml(item.query)+'</span><span class="count">'+number(item.count)+'</span></li>'}).join("")}
+    function renderProjects(items){var el=document.getElementById("projects");if(!items.length){el.innerHTML='<div class="empty">Nenhum projeto registrado</div>';return}var max=Math.max.apply(null,items.map(function(x){return x.count}));el.innerHTML=items.map(function(item){return'<div class="project-line"><span class="project-name" title="'+escapeHtml(item.project)+'">'+escapeHtml(item.project)+'</span><div class="track"><div class="fill" style="width:'+Math.max(2,(item.count/max)*100)+'%"></div></div><span class="project-count">'+number(item.count)+'</span></div>'}).join("")}
+    function renderRecent(items){var el=document.getElementById("recent");if(!items.length){el.innerHTML='<tr><td colspan="3" class="empty">Nenhuma pesquisa registrada</td></tr>';return}el.innerHTML=items.map(function(item){return'<tr><td>'+escapeHtml(item.query)+'</td><td><span class="tag">'+escapeHtml(item.project)+'</span></td><td title="'+dateTime(item.createdAt)+'">'+relative(item.createdAt)+'</td></tr>'}).join("")}
+    async function loadReport(){if(loading||document.hidden)return;loading=true;try{var response=await fetch("/api/search-report",{cache:"no-store"});if(!response.ok)throw new Error("Não foi possível atualizar o relatório.");var data=await response.json();document.getElementById("total").textContent=number(data.summary.total);document.getElementById("today").textContent=number(data.summary.today);document.getElementById("lastHour").textContent=number(data.summary.lastHour);document.getElementById("uniqueTerms").textContent=number(data.summary.uniqueTerms);renderTimeline(data.timeline);renderTop(data.topQueries);renderProjects(data.projects);renderRecent(data.recent);var generated=new Date(data.generatedAt);document.getElementById("clock").textContent=generated.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",second:"2-digit"});document.getElementById("updated").textContent="Dados atualizados automaticamente";document.getElementById("liveText").textContent="Ao vivo · atualiza em 5s";document.getElementById("error").style.display="none"}catch(error){var el=document.getElementById("error");el.textContent=error.message||"Falha ao atualizar o relatório.";el.style.display="block";document.getElementById("liveText").textContent="Reconectando…"}finally{loading=false}}
+    loadReport();setInterval(loadReport,5000);document.addEventListener("visibilitychange",function(){if(!document.hidden)loadReport()});
+  </script>
 </body>
 </html>
